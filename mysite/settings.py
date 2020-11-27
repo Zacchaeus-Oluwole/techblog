@@ -29,7 +29,7 @@ DEBUG = False
 
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 SITE_ID = 1
