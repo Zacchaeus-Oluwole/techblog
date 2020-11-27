@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load blog_tags %}
+{% load static %}
+<html lang="en">
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Site Metas -->
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!----#####################################################-->
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+        <!-- Design fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+
+        <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+        <!-- FontAwesome Icons core CSS -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+        <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+        <!-- Responsive styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+        <!-- Colors for this template -->
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+
+        <!-- Version Tech CSS for this template -->
+    <link rel="stylesheet" href="{% static 'css/version/tech.css' %}">
+    
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+        <header class="tech-header header">
+            <div class="container-fluid">
+                <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="tech-index.html"><img src="static/images/version/tech-logo.png" alt=""></a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_list' %}">Home</a>
+                            </li>
+                            <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
+                                <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+                                    <li>
+                                        <div class="container">
+                                            <div class="mega-menu-content clearfix">
+
+                                                <div class="tab">
+                                                    <small><a href="#" title="">
+                                                        <button class="tablinks active" onclick="openCategory(event, 'cat01')">Education</button>                      
+                                                        <button class="tablinks " onclick="openCategory(event, 'cat02')">Science</button>
+                                                        <button class="tablinks " onclick="openCategory(event, 'cat03')">Technology</button>
+                                                    </a></small>
+                                                </div>
+
+                                                <div class="tab-details clearfix">
+                                                    <div id="cat01" class="tabcontent active" >
+                                                        <div class="row">
+                                                            {%edu_post as edu%}
+                                                            {% for post in edu %}
+                                                                                                                
+                                                            <div class="col">
+                                                                <div class="col-lg-6">
+                                                                    <div class="blog-box">
+                                                                        <div class="post-media">                                                
+                                                                        </div><!-- end media -->
+                                                                        <div class="blog-meta">
+                                                                            <h4><a href="{{ post.get_absolute_url }}" title="">{{ post.title }}</a></h4>
+                                                                                {% for tag in post.tags.all%}                                                
+                                                                                <small><a href="{% url 'blog:post_list_by_tag' tag.slug %}" title="">{{tag.name}}</a></small>
+                                                                                {% endfor %}                                                   
+                                                                        </div><!-- end meta -->
+                                                                    </div><!-- end blog-box -->
+                                                                </div><!-- end col -->
+                                                            </div><!-- end col -->
+                                                            {% empty %}
+                                                                There are no similar posts yet.
+                                                            {% endfor %}
+                                                        </div><!-- end row -->
+                                                    </div>
+
+                                                    <div id="cat02" class="tabcontent ">
+                                                        <div class="row">
+                                                            {%sci_post as sci%}
+                                                            {% for post in sci %}   
+                                                                                                                
+                                                            <div class="col">
+                                                                <div class="col-lg-6">
+                                                                    <div class="blog-box">
+                                                                        <div class="post-media">                                                
+                                                                        </div><!-- end media -->
+                                                                        <div class="blog-meta">
+                                                                            <h4><a href="{{ post.get_absolute_url }}" title="">{{ post.title }}</a></h4>
+                                                                                {% for tag in post.tags.all%}                                                
+                                                                                <small><a href="{% url 'blog:post_list_by_tag' tag.slug %}" title="">{{tag.name}}</a></small>
+                                                                                {% endfor %}                                                   
+                                                                        </div><!-- end meta -->
+                                                                    </div><!-- end blog-box -->
+                                                                </div><!-- end col -->
+                                                            </div><!-- end col -->
+                                                            {% empty %}
+                                                                There are no similar posts yet.
+                                                            {% endfor %}
+                                                        </div><!-- end row -->
+                                                    </div>
+
+                                                    <div id="cat03" class="tabcontent ">
+                                                        <div class="row">
+                                                            {%tech_post as tech%}
+                                                            {% for post in tech %}   
+                                                                                                                
+                                                            <div class="col">
+                                                                <div class="col-lg-6">
+                                                                    <div class="blog-box">
+                                                                        <div class="post-media">                                                
+                                                                        </div><!-- end media -->
+                                                                        <div class="blog-meta">
+                                                                            <h4><a href="{{ post.get_absolute_url }}" title="">{{ post.title }}</a></h4>
+                                                                            {% for tag in post.tags.all%}                                                
+                                                                            <small><a href="{% url 'blog:post_list_by_tag' tag.slug %}" title="">{{tag.name}}</a></small>
+                                                                            {% endfor %}                                            
+                                                                        </div><!-- end meta -->
+                                                                    </div><!-- end blog-box -->
+                                                                </div><!-- end col -->
+                                                            </div><!-- end col -->
+                                                            {% empty %}
+                                                                There are no similar posts yet.
+                                                            {% endfor %}
+                                                        </div><!-- end row -->
+                                                    </div>
+
+
+
+                                                </div><!-- end tab-details -->
+
+                                            </div><!-- end mega-menu-content -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:notifications' %}">Blog Update</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_about_us' %}">About Us</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_search' %}"><i class="fa fa-search"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'blog:post_feed' %}"><i class="fa fa-rss"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div><!-- end container-fluid -->
+        </header><!-- end market-header -->
+
+        {% block content %}
+
+        {% endblock %}
+
+        
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul>
+                            <li><a href="{% url 'blog:post_about_us' %}">About us</a></li>
+                        </ul>
+                    </div><!-- end link-widget -->
+                    <div class="col-md-12 text-center">
+                        <br>
+                        <div class="copyright">&copy; Tech Blog. </div>
+                    </div>
+                </div>
+            </div><!-- end container -->
+        </footer><!-- end footer -->
+
+        <div class="dmtop">Scroll to Top</div>
+    </div>
+    <!-- Core JavaScript
+    ================================================== -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/tether.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
