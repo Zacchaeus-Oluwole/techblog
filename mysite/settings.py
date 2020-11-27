@@ -143,7 +143,7 @@ STATICFILES_DIRS = [ # < here
 os.path.join(BASE_DIR, 'static'),
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 #Django write email to server
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
