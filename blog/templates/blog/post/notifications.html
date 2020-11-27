@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% load blog_tags %}
+{% load static %}
+
+{% block content%}
+<div class="page-title lb single-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h2><i class='fa fa-gears'></i> Blog Update </h2>
+            </div><!-- end col -->
+            <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'blog:post_list' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Blog Update</li>
+                </ol>
+            </div><!-- end col -->                    
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end page-title -->
+
+<section class="section wb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h4>Today's Update</h4>
+                            <p>Thank you for checking today's update. The admin of this blog will be using this page to
+                                 pass information across to anyone visiting this blog. If there will be any inconvenience 
+                                 that the blog will cause our users base on the maintenance, it will surely be communicated to everyone 
+                                 here on this page.
+                            </p>
+                            <p>
+                                I believe you like our blog and our post. Feel free to drop your comment under any post.
+                                I really appreciate the time you spent on our page. 
+                                Thank you very much.
+                            </p>
+                        </div>
+                    </div>
+                </div><!-- end page-wrapper -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+
+{% endblock %}

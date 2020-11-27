@@ -1,0 +1,148 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% load static %}
+{% block title %}My Blog{% endblock %}
+
+{% block content%}
+    <!-- <h1>My Blog</h1> -->
+    <section class="section first-section">       
+        <div class="container-fluid">            
+            <div class="masonry-blog clearfix">                
+                <div class="first-slot">
+                    <div class="masonry-box post-media">
+                         <img src="static/Z-TechPlus.jpg" alt="" class="img-fluid">
+                         <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a title="">Z-Technologies</a></span>
+                                    <h4><a title="">Welcome to techblog</a></h4>
+                                    <small><a title="">21 Nov, 2020</a></small>
+                                    <small><a title="">by Zacchaeus</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div><!-- end first-side -->
+
+                <div class="first-slot">
+                    <div class="masonry-box post-media">
+                         <img src="static/Z-TechPlus.jpg" alt="" class="img-fluid">
+                         <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a title="">Z-Technologies</a></span>
+                                    <h4><a title="">Welcome to Z-Technologies</a></h4>
+                                    <small><a title="">21 Nov, 2020</a></small>
+                                    <small><a title="">by Zacchaeus</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div><!-- end first-side -->
+            </div><!-- end masonry -->
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-wrapper">
+                        <div class="blog-top clearfix">
+                            <h4 class="pull-left">Recent News <a href="#"><i class="fa fa-rss"></i></a></h4>
+                        </div><!-- end blog-top -->
+
+                        <div class="blog-list clearfix">
+                            {% for post in posts %}
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="{{ post.get_absolute_url }}" title="">
+                                            <!--<img src="" alt="" class="img-fluid"> -->
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
+
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="{{ post.get_absolute_url }}" title="">{{post.title}}</p>
+                                        {{ post.body|markdown|truncatewords_html:50 }}
+                                        {% for tag in post.tags.all%}
+                                    <small class="firstsmall"><a class="bg-orange" href="{% url 'blog:post_list_by_tag' tag.slug %}" title="">{{tag.name}}</a></small>
+                                    {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                    <small><a href="{{ post.get_absolute_url }}" title="">{{ post.publish }} </a></small>
+                                    <small><a href="#" title="">by {{ post.author }}</a></small>
+                                    
+
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box --> 
+                            <hr class="invis">
+                            {% endfor %}
+                        </div><!-- end blog-list -->
+                    </div><!-- end page-wrapper -->
+
+                    <hr class="invis">
+
+                    {% include "pagination.html" with page=posts %}
+                </div><!-- end col -->
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sidebar">
+              
+                        <div class="widget">
+                            <h2 class="widget-title">Latest Posts</h2>
+                            <div class="blog-list-widget">
+                                {% show_latest_posts 5%}
+                                <div class="list-group">
+                                    {% for post in show_latest_posts%}
+                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">float-left">
+                                            <h5 class="mb-1">5 Beautiful buildings you need..</h5>
+                                            <small>12 Jan, 2016</small>
+                                        </div>
+                                    </a>
+                                    {%endfor%}
+
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Most Commented Posts</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group">
+                                    {% get_most_commented_posts as most_commented_posts %}
+                                    {% for post in most_commented_posts %}
+                                    <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <h5 class="mb-1">{{post.title}}</h5>
+                                            <span class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+
+                                    
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="upload/banner_03.jpg" alt="" class="img-fluid">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+                    </div><!-- end sidebar -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+ {%endblock%}
