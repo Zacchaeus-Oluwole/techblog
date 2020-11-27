@@ -1,4 +1,4 @@
-actionlib==1.13.2
+actionlib
 aioredis==1.3.1
 amqp==5.0.2
 angles==1.9.13
