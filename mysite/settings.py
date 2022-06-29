@@ -89,15 +89,26 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'HOST':'ec2-54-172-219-218.compute-1.amazonaws.com',
+#         'NAME': 'dojqve7i9fj2p',
+#         'USER': 'kcyckbgsbcqysb',
+#         'PASSWORD': '704175dbdadeea3839678737fc6229c514ff8031ce176cfa8935357beaed851f',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST':'ec2-54-172-219-218.compute-1.amazonaws.com',
-        'NAME': 'dojqve7i9fj2p',
-        'USER': 'kcyckbgsbcqysb',
-        'PASSWORD': '704175dbdadeea3839678737fc6229c514ff8031ce176cfa8935357beaed851f',
+        'NAME': 'myblog',
+        'USER': 'zach',
+        'PASSWORD': 'zach123',
     }
 }
+
 
 
 # Password validation
